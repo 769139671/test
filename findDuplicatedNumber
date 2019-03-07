@@ -1,0 +1,22 @@
+package main
+
+import "fmt"
+
+func find(arr []int) []int {
+    i := 0
+    
+    result := []int{}
+    fmt.Println(arr[i])
+    for j := 1; j < len(arr); j ++{
+        if arr[j] == arr[i] {
+            result = append(result, arr[i])
+           
+        }
+    }
+    return result
+}
+
+func main() {
+    a:= []int{2,3,5,4,3,2,6,7}
+    fmt.Println(find(a))
+}
