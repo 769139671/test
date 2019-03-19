@@ -1,0 +1,75 @@
+package main
+
+import "fmt"
+type Object interface{
+}
+type Node struct {
+    Value Object
+    Next *Node
+}
+type List struct {
+    size int
+    head *Node
+    tail *Node
+}
+func (l *List) Initial() {
+    l.size = 0
+    l.head = nil
+    l.tail = nil
+}
+func (l *List) Add(node *Node) bool {
+    fmt.Println(node)
+    fmt.Println(l.size)
+    if l.size == 0 {
+        l.head = node
+        l.tail = node
+        l.size ++
+    } else {
+        l.tail = node
+        l.
+        
+    }
+    return true
+}
+/*
+func (l *List) Append(node *Node) bool {
+    if node == nil {
+        return false
+    }
+    //node.Next is a pointer = nil
+    node.Next = nil
+    //if the list is a initial list
+    //set this node as the head of the list
+    if l.size == 0 {
+        l.head = node
+    } else {
+        //else
+        //set this node as the tile of the list
+        //oldTail is the pointer of pre tail in the list
+        
+        //oldTail.next is a *Node
+        l.tail.next = node
+    }
+    //node is a pointer of Node
+    //set the pointer of new node as list.tail
+    *l.tail = node
+    l.size ++
+    return true
+    
+}
+*/
+//func (a *Node) Add()
+func main() {
+    var listNode List
+    listNode.Initial()
+    fmt.Println(listNode)
+    var node Node
+    node.Value = 10
+    node.Next = nil
+    fmt.Println(node)
+    listNode.Add(&node)
+    fmt.Println(listNode.size)
+    fmt.Println(listNode.head)
+    fmt.Println(listNode.tail)
+    
+}
