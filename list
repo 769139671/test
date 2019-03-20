@@ -18,58 +18,99 @@ func (l *List) Initial() {
     l.tail = nil
 }
 func (l *List) Add(node *Node) bool {
-    fmt.Println(node)
-    fmt.Println(l.size)
+   // fmt.Println(node)
+  //  fmt.Println(l.size)
     if l.size == 0 {
         l.head = node
         l.tail = node
         l.size ++
     } else {
+        
+        oldTail := l.tail
+        fmt.Println("oldTail:",oldTail)
+        
+        oldTail.Next = node
+        fmt.Println("oldTail.Next",oldTail.Next)
         l.tail = node
-        l.
+        l.size ++
         
     }
     return true
 }
-/*
-func (l *List) Append(node *Node) bool {
+func (l *List) InsertToFirst(node *Node) bool {
     if node == nil {
         return false
-    }
-    //node.Next is a pointer = nil
-    node.Next = nil
-    //if the list is a initial list
-    //set this node as the head of the list
-    if l.size == 0 {
-        l.head = node
     } else {
-        //else
-        //set this node as the tile of the list
-        //oldTail is the pointer of pre tail in the list
-        
-        //oldTail.next is a *Node
-        l.tail.next = node
+        l.head = node
+        node.Next = l.head
+        l.size ++
     }
-    //node is a pointer of Node
-    //set the pointer of new node as list.tail
-    *l.tail = node
-    l.size ++
     return true
+}
+func (l *List)  Find(i int) *Node {
+    if i > l.size {
+        return nil
+    }
+    fmt.Println(i)
+    item := l.head
+    fmt.Println("head:",item)
+    fmt.Println("next:",item.Next)
+    return item
+    
+}
+/*
+func (l *List) Insert(node *Node) bool {
+    if node == nil {
+        return false
+    } else {
+        
+    }
     
 }
 */
-//func (a *Node) Add()
 func main() {
     var listNode List
     listNode.Initial()
-    fmt.Println(listNode)
+    //fmt.Println(listNode)
+    fmt.Println("first step:")
     var node Node
     node.Value = 10
     node.Next = nil
-    fmt.Println(node)
+    fmt.Println("node:",node)
     listNode.Add(&node)
     fmt.Println(listNode.size)
     fmt.Println(listNode.head)
     fmt.Println(listNode.tail)
+    fmt.Println("second step:")
+    var node1 Node
+    node1.Value = 11
+    node1.Next = nil
+    fmt.Println("node1:",node1)
+    listNode.Add(&node1)
+    fmt.Println(listNode.size)
+    fmt.Println(listNode.head)
+    fmt.Println(listNode.tail)
+    fmt.Println("step 3 :")
+    var node2 Node
+    node2.Value = 12
+    node2.Next = nil
+    fmt.Println("node2:",node2)
+    listNode.Add(&node2)
+    fmt.Println(listNode.size)
+    fmt.Println(listNode.head)
+    fmt.Println(listNode.tail)
+    fmt.Println("step 4 : InsertToFirst")
+    var node3 Node
+    node3.Value = 13
+    node3.Next = nil
+    fmt.Println("node3:",node3)
+    listNode.InsertToFirst(&node3)
+    fmt.Println(listNode.size)
+    fmt.Println(listNode.head)
+    fmt.Println(listNode.tail)
+    fmt.Println("step 5 : find i")
+    i := 2
+    fmt.Println(listNode.Find(i))
+    
     
 }
