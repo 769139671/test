@@ -53,8 +53,9 @@ func (l *List)  Find(i int) *Node {
     }
     fmt.Println(i)
     item := l.head
-    fmt.Println("head:",item)
-    fmt.Println("next:",item.Next)
+    for j := 0; j < i; j ++ {
+        item = item.Next
+    }
     return item
     
 }
