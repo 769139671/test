@@ -1,0 +1,63 @@
+package main
+
+import "fmt"
+
+type Heap struct {
+	heap []int
+}
+func (h *Heap) Initial(a *Heap) {
+	h.heap = append(h.heap, 0)
+}
+
+func (h *Heap) Insert(v int) bool {
+	h.heap = append(h.heap, v)
+	j := len(h.heap) - 1
+	shiftUp(h.heap,j)
+	return true
+}
+func (h *Heap) Delete(i int) bool{
+	if i < 1 || i > len(h.heap) -1{
+		return false
+	}
+	h.heap[len(h.heap)-1],h.heap[i] = h.heap[i], h.heap[len(h.heap)-1]
+	shiftDown(h.heap,i)
+	return true
+}
+func shiftDown(arr []int, i int) {
+	if arr[i] > arr[2*i] && arr[i] > arr[2*i +1] {
+		return
+	}else {
+		if arr[2*i] > arr[2*i+1] {
+			arr[i], arr[2*i] = arr[2*i], arr[i]
+		}
+	}
+}
+func shiftUp(arr []int, j int)  {
+
+	if j <= 1 {
+		return
+	} else {
+		if arr[j] > arr[j/2] {
+			arr[j],arr[j/2] = arr[j/2], arr[j]
+			j = j/2
+			shiftUp(arr,j)
+		} else {
+			return
+		}
+	}
+
+	return
+}
+
+func main() {
+	var a Heap
+	a.Initial(&a)
+	fmt.Println(a.heap)
+	for i := 1; i <=10; i ++ {
+		a.Insert(i)
+	}
+	fmt.Println(a)
+	fmt.Println(a.Delete(2))
+
+
+}
