@@ -1,0 +1,22 @@
+package main
+
+import "fmt"
+type TreeNode struct {
+    value string
+    sLeft *TreeNode
+    sRight *TreeNode
+    parent *TreeNode
+}
+func (t *TreeNode) create(node *TreeNode, sLeft ) bool {
+    
+}
+func main() {
+    var a TreeNode
+    a = TreeNode{"a",nil,nil,nil}
+    fmt.Println(a)
+    b := TreeNode{"b",nil, nil, &a}
+    a.sLeft = &b
+    fmt.Println(b)
+    fmt.Println(a.sLeft)
+    fmt.Println(b.parent)
+}
