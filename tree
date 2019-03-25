@@ -19,10 +19,12 @@ func (h *Heap) Delete(i int) bool{
 	if i < 1 || i > len(h.heap) -1{
 		return false
 	}
+
 	h.heap[len(h.heap)-1],h.heap[i] = h.heap[i], h.heap[len(h.heap)-1]
-	//fmt.Println(len(h.heap))
-	shiftDown(h.heap,i)
+	//cut down then shift down
 	h.heap = h.heap[:len(h.heap)-1]
+	shiftDown(h.heap,i)
+	
 	return true
 }
 func (h *Heap) ExtractMax() int {
@@ -31,11 +33,10 @@ func (h *Heap) ExtractMax() int {
 	return result
 }
 func shiftDown(arr []int, i int) {
-	//fmt.Println(i)
-	if i*2 +1 > len(arr) -1 {
-		return
+	if i*2+1 > len(arr)- 1 {
+	    return
 	}
-	if arr[i] > arr[2*i] && arr[i] > arr[2*i +1] {
+	if arr[i] >= arr[2*i] && arr[i] >= arr[2*i +1] {
 		return
 	}else {
 		if arr[2*i] > arr[2*i+1] {
@@ -74,12 +75,10 @@ func main() {
 	for i := 1; i <=10; i ++ {
 		a.Insert(i)
 	}
-	//fmt.Println(a)
-	//fmt.Println(a.Delete(2))
-	fmt.Println(a.heap)
-	var sort []int
 
-	for j := 0; j < len(a.heap) - 1; j ++ {
-		sort = append(sort,a.ExtractMax())
+	var sort []int
+	for k := 0; k < 10; k ++ {
+	    sort = append(sort,a.ExtractMax())
 	}
-	fmt.Println(sort)
+	fmt.Println("sort:",sort)
+}
