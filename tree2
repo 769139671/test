@@ -7,16 +7,69 @@ type TreeNode struct {
     sRight *TreeNode
     parent *TreeNode
 }
-func (t *TreeNode) create(node *TreeNode, sLeft ) bool {
-    
+func (t *TreeNode) create(value string,sLeft,sRight,parent *TreeNode ) bool {
+    t.value = value
+    t.sLeft = sLeft
+    t.sRight = sRight
+    t.parent = parent
+    return true
+}
+func (t *TreeNode) find(node *TreeNode) *TreeNode {
+    var result *TreeNode
+    if node.sLeft ==nil && node == node.parent.sLeft {
+        result = node.parent
+    }
+    if node.sRight.sLeft != nil {
+        result = node.sRight.sLeft
+        for i := 0; i <10;i ++ {
+            if result.sLeft == nil {
+                result = result.sLeft
+                break
+            } else {
+                result = result.sLeft
+            }
+        }
+    }
+    /*
+    if node.sRight.sLeft != nil {
+        result = node.sRight.sLeft
+        for i := 0; i ++ {
+            if result.sLeft == nil {
+                result = result.sLeft
+                break
+            } else {
+                result = result.sLeft
+            }
+        }    
+    }
+    */
+    return result
 }
 func main() {
     var a TreeNode
-    a = TreeNode{"a",nil,nil,nil}
+    var b TreeNode
+    var c TreeNode
+    var d TreeNode
+    var e TreeNode
+    var f TreeNode
+    var g TreeNode
+    var h TreeNode
+    var i TreeNode
+    a.create("a",&b,&c,nil)
+    b.create("b",&d,&e,&a)
+    c.create("c",&f,&g,&a)
+    d.create("d",nil, nil, &b)
+    e.create("e",&h,&i,&b)
+    f.create("f",nil,nil,&c)
+    g.create("g",nil,nil,&c)
+    h.create("h",nil,nil, &e)
+    i.create("i",nil,nil,&e)
+    
     fmt.Println(a)
-    b := TreeNode{"b",nil, nil, &a}
-    a.sLeft = &b
-    fmt.Println(b)
-    fmt.Println(a.sLeft)
-    fmt.Println(b.parent)
-}
+    fmt.Println(a.sLeft.sLeft)
+    fmt.Println(a.find(&b))
+}  
+
+
+
+
